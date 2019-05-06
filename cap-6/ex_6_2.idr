@@ -39,3 +39,11 @@ printAcc ((Lit ys) :: xs) acc = printAcc xs (acc ++ ys)
 
 printf : (s : String) -> PrintFormat (toFormat $ unpack s)
 printf s = printAcc (toFormat $ unpack s) ""
+
+
+TupleVect : Nat -> Type -> Type
+TupleVect Z type = Unit
+TupleVect (S k) type = Pair type (TupleVect k type)
+
+test : TupleVect 4 Nat
+test = (1,2,3,4,())
